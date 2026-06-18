@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Contactez Tortoiseshell Cat pour toute question concernant les créations et impressions.">
+        <meta name="author" content="Tortoiseshell Cat">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact — Tortoiseshell Cat</title>
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body class="inner-page">
+        <header class="main-header">
+            <div class="main-header-inner">
+                <a href="index.html" class="header-logo" aria-label="Accueil Tortoiseshell Cat"> <img src="images/chat_carapace_cercle.svg" alt="Logo Tortoiseshell Cat"> </a>
+                <nav class="main-navigation" aria-label="Navigation principale">
+                    <a href="galerie.html" class="nav-link">
+                    Galerie </a>
+                    <a href="l_atelier.html" class="nav-link">
+                    L’atelier </a>
+                    <a href="ou_acheter.html" class="nav-link">
+                    Où acheter </a>
+                    <a href="contact.html" class="nav-link active" aria-current="page">
+                    Contact </a>
+                </nav>
+            </div>
+        </header>
+        <main class="contact-page-main">
+            <section class="contact-section">
+                <div class="contact-heading">
+                    <h1>Rentrons en contact</h1>
+                    <p>
+                    Une question sur une création, un format ou une impression ?
+                    Écrivez-nous à l’aide du formulaire ci-dessous. </p>
+                </div>
+                <form class="contact-form" action="https://formspree.io/f/xkoakrna" method="POST">
+                    <div class="contact-form-row">
+                        <label for="name">
+                            Votre nom / Votre société
+                            <span aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="name" name="name" autocomplete="name" required>
+                    </div>
+                    <div class="contact-form-row">
+                        <label for="phone">
+                            Numéro de téléphone
+</label>
+                        <input type="tel" id="phone" name="phone" autocomplete="tel">
+                    </div>
+                    <div class="contact-form-row">
+                        <label for="email">
+                            Votre e-mail
+                            <span aria-hidden="true">*</span>
+                        </label>
+                        <input type="email" id="email" name="email" autocomplete="email" required>
+                    </div>
+                    <div class="contact-form-row">
+                        <label for="subject">
+                            Sujet
+                            <span aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="contact-form-row contact-form-row-message">
+                        <label for="message">
+                            Votre question
+                            <span aria-hidden="true">*</span>
+                        </label>
+                        <textarea id="message" name="message" rows="7" required></textarea>
+                    </div>
+                    <input type="hidden" name="_subject" value="Nouveau message depuis Tortoiseshell Cat">
+                    <div class="contact-privacy">
+                        <a href="mentions-legales.html#donnees-personnelles" class="privacy-button">
+                        En savoir plus sur vos données personnelles </a>
+                    </div>
+                    <div class="contact-form-actions">
+                        <button type="submit" class="contact-submit">
+                            Envoyer
+</button>
+                    </div>
+                </form>
+            </section>
+            <div class="page-wave" aria-hidden="true"></div>
+        </main>
+        <footer class="site-footer">
+            <div class="footer-pattern" aria-hidden="true"></div>
+            <a class="legal-link" href="mentions-legales.html">
+            Mentions légales </a>
+        </footer>
+    </body>
+</html>

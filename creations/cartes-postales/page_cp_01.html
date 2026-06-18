@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Découvrez cette impression originale de Tortoiseshell Cat.">
+        <meta name="author" content="Tortoiseshell Cat">
+        <title>Nom de la création — Tortoiseshell Cat</title>
+        <link href="../../css/style.css" rel="stylesheet">
+    </head>
+    <body class="inner-page">
+        <header class="main-header">
+            <div class="main-header-inner">
+                <a href="../../index.html" class="header-logo" aria-label="Accueil Tortoiseshell Cat"> <img src="../../images/chat_carapace_cercle.svg" alt="Logo Tortoiseshell Cat"> </a>
+                <nav class="main-navigation" aria-label="Navigation principale">
+                    <a href="../../galerie.html" class="nav-link active" aria-current="page">
+                Galerie </a>
+                    <a href="../../l_atelier.html" class="nav-link">
+                L’atelier </a>
+                    <a href="../../ou_acheter.html" class="nav-link">
+                Où acheter </a>
+                    <a href="../../contact.html" class="nav-link">
+                Contact </a>
+                </nav>
+            </div>
+        </header>
+        <main class="creation-page-main">
+            <section class="creation-detail-page">
+                <div class="creation-return">
+                    <a href="../../cartes-postales.html" class="creation-return-button">&larr; Retour à la galerie Carte postale </a>
+                </div>
+                <div class="creation-detail-layout">
+                    <div class="creation-images">
+                        <div class="creation-thumbnails" aria-label="Choisir une vue de la création">
+                            <button type="button" class="creation-thumbnail active" data-image="../../images/blank-image.png" data-alt="Vue principale de la création" aria-label="Afficher la première vue">
+                                <img src="../../images/blank-image.png" alt="">
+                            </button>
+                            <button type="button" class="creation-thumbnail" data-image="../../images/blank-image-2.png" data-alt="Deuxième vue de la création" aria-label="Afficher la deuxième vue">
+                                <img src="../../images/blank-image-2.png" alt="">
+                            </button>
+                            <button type="button" class="creation-thumbnail" data-image="../../images/blank-image-3.png" data-alt="Troisième vue de la création" aria-label="Afficher la troisième vue">
+                                <img src="../../images/blank-image-3.png" alt="">
+                            </button>
+                            <button type="button" class="creation-thumbnail" data-image="../../images/blank-image-4.png" data-alt="Quatrième vue de la création" aria-label="Afficher la quatrième vue">
+                                <img src="../../images/blank-image-4.png" alt="">
+                            </button>
+                        </div>
+                        <div class="creation-main-image-area">
+                            <div class="creation-main-image-frame">
+                                <img id="creation-main-image" class="creation-main-image" src="../../images/blank-image.png" alt="Vue principale de la création">
+                                <div class="creation-zoom-lens" aria-hidden="true"></div>
+                                <span class="creation-zoom-indication">
+                            Survolez l’image pour zoomer </span>
+                            </div>
+                        </div>
+                    </div>
+                    <article class="creation-information">
+                        <p class="creation-category">Impression au format CARTE POSTALE</p>
+                        <h1>Nom de la création</h1>
+                        <p class="creation-introduction">
+                    Ajoutez ici une courte présentation de la création,
+                    de son univers et de son inspiration. </p>
+                        <dl class="creation-characteristics">
+                            <div>
+                                <dt>Technique</dt>
+                                <dd>Linogravure imprimée à la main</dd>
+                            </div>
+                            <div>
+                                <dt>Format</dt>
+                                <dd>
+                                    <p>Carte postale &mdash; 10 × 15 cm</p>
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Papier</dt>
+                                <dd>À compléter</dd>
+                            </div>
+                            <div>
+                                <dt>Couleur</dt>
+                                <dd>À compléter</dd>
+                            </div>
+                            <div>
+                                <dt>Tirage</dt>
+                                <dd>À compléter</dd>
+                            </div>
+                        </dl>
+                        <div class="creation-long-description">
+                            <h2>À propos de cette création</h2>
+                            <p>
+                        Ajoutez ici une description plus détaillée :
+                        histoire de la création, méthode d’impression,
+                        particularités du tirage ou informations utiles. </p>
+                        </div>
+                        <a href="../../ou_acheter.html" class="enter-button creation-shop-button">
+                    Où acheter </a>
+                    </article>
+                </div>
+            </section>
+            <div class="page-wave" aria-hidden="true"></div>
+        </main>
+        <footer class="site-footer">
+            <div class="footer-pattern" aria-hidden="true"></div>
+            <a class="legal-link" href="../../mentions-legales.html">
+        Mentions légales </a>
+        </footer>
+        <div id="creation-zoom-panel" class="creation-zoom-panel" aria-hidden="true"></div>
+        <script>
+    const mainImage =
+        document.querySelector("#creation-main-image");
+
+    const imageFrame =
+        document.querySelector(".creation-main-image-frame");
+
+    const zoomPanel =
+        document.querySelector("#creation-zoom-panel");
+
+    const zoomLens =
+        document.querySelector(".creation-zoom-lens");
+
+    const thumbnails =
+        document.querySelectorAll(".creation-thumbnail");
+
+
+    const zoomLevel = 2.5;
+    const panelGap = 28;
+
+
+    function getDisplayedImageRect() {
+        const frameRect =
+            imageFrame.getBoundingClientRect();
+
+        const naturalWidth =
+            mainImage.naturalWidth;
+
+        const naturalHeight =
+            mainImage.naturalHeight;
+
+
+        if (!naturalWidth || !naturalHeight) {
+            return null;
+        }
+
+
+        const imageRatio =
+            naturalWidth / naturalHeight;
+
+        const frameRatio =
+            frameRect.width / frameRect.height;
+
+
+        let displayedWidth;
+        let displayedHeight;
+
+
+        if (imageRatio > frameRatio) {
+            displayedWidth =
+                frameRect.width;
+
+            displayedHeight =
+                displayedWidth / imageRatio;
+        } else {
+            displayedHeight =
+                frameRect.height;
+
+            displayedWidth =
+                displayedHeight * imageRatio;
+        }
+
+
+        const left =
+            frameRect.left +
+            (frameRect.width - displayedWidth) / 2;
+
+        const top =
+            frameRect.top +
+            (frameRect.height - displayedHeight) / 2;
+
+
+        return {
+            left: left,
+            top: top,
+            right: left + displayedWidth,
+            bottom: top + displayedHeight,
+            width: displayedWidth,
+            height: displayedHeight,
+            frameLeft: frameRect.left,
+            frameTop: frameRect.top
+        };
+    }
+
+
+    function updateZoomImage() {
+        const imageSource =
+            mainImage.currentSrc || mainImage.src;
+
+        zoomPanel.style.backgroundImage =
+            `url("${imageSource}")`;
+
+        zoomPanel.style.backgroundSize =
+            `${zoomLevel * 100}% ${zoomLevel * 100}%`;
+    }
+
+
+    function positionZoomPanel() {
+        const frameRect =
+            imageFrame.getBoundingClientRect();
+
+        const panelWidth =
+            zoomPanel.offsetWidth || 500;
+
+        const panelHeight =
+            zoomPanel.offsetHeight || 600;
+
+        const spaceOnRight =
+            window.innerWidth -
+            frameRect.right -
+            panelGap;
+
+
+        let left;
+        let top =
+            frameRect.top;
+
+
+        if (spaceOnRight >= panelWidth) {
+            left =
+                frameRect.right + panelGap;
+        } else {
+            left =
+                Math.max(
+                    12,
+                    frameRect.left -
+                    panelWidth -
+                    panelGap
+                );
+        }
+
+
+        if (top + panelHeight > window.innerHeight - 12) {
+            top =
+                window.innerHeight -
+                panelHeight -
+                12;
+        }
+
+
+        top =
+            Math.max(12, top);
+
+
+        zoomPanel.style.left =
+            `${left}px`;
+
+        zoomPanel.style.top =
+            `${top}px`;
+    }
+
+
+    function openZoom() {
+        if (window.innerWidth <= 1100) {
+            return;
+        }
+
+
+        updateZoomImage();
+        positionZoomPanel();
+
+
+        zoomPanel.classList.add("active");
+        imageFrame.classList.add("zoom-active");
+
+
+        zoomPanel.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+    }
+
+
+    function closeZoom() {
+        zoomPanel.classList.remove("active");
+        imageFrame.classList.remove("zoom-active");
+
+
+        zoomPanel.style.backgroundPosition =
+            "center center";
+
+
+        zoomPanel.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+    }
+
+
+    function cursorIsInsideDisplayedImage(event) {
+        const imageRect =
+            getDisplayedImageRect();
+
+
+        if (!imageRect) {
+            return false;
+        }
+
+
+        return (
+            event.clientX >= imageRect.left &&
+            event.clientX <= imageRect.right &&
+            event.clientY >= imageRect.top &&
+            event.clientY <= imageRect.bottom
+        );
+    }
+
+
+    function updateZoomPosition(event) {
+        const imageRect =
+            getDisplayedImageRect();
+
+
+        if (!imageRect) {
+            closeZoom();
+            return;
+        }
+
+
+        const x =
+            event.clientX - imageRect.left;
+
+        const y =
+            event.clientY - imageRect.top;
+
+
+        const xPercent =
+            (x / imageRect.width) * 100;
+
+        const yPercent =
+            (y / imageRect.height) * 100;
+
+
+        const lensLeft =
+            imageRect.left -
+            imageRect.frameLeft +
+            x;
+
+        const lensTop =
+            imageRect.top -
+            imageRect.frameTop +
+            y;
+
+
+        zoomLens.style.left =
+            `${lensLeft}px`;
+
+        zoomLens.style.top =
+            `${lensTop}px`;
+
+
+        zoomPanel.style.backgroundPosition =
+            `${xPercent}% ${yPercent}%`;
+    }
+
+
+    function selectThumbnail(thumbnail) {
+        if (!thumbnail) {
+            return;
+        }
+
+        const selectedImage =
+            thumbnail.dataset.image;
+
+        const selectedAlt =
+            thumbnail.dataset.alt ||
+            "Vue de la création";
+
+        closeZoom();
+
+        mainImage.src =
+            selectedImage;
+
+        mainImage.alt =
+            selectedAlt;
+
+        thumbnails.forEach((item) => {
+            item.classList.remove("active");
+            item.setAttribute("aria-pressed", "false");
+        });
+
+        thumbnail.classList.add("active");
+        thumbnail.setAttribute("aria-pressed", "true");
+    }
+
+
+    thumbnails.forEach((thumbnail) => {
+        thumbnail.setAttribute("aria-pressed", "false");
+
+        thumbnail.addEventListener("click", () => {
+            selectThumbnail(thumbnail);
+        });
+    });
+
+
+    const firstThumbnail =
+        thumbnails[0];
+
+    if (firstThumbnail) {
+        selectThumbnail(firstThumbnail);
+    }
+
+
+    mainImage.addEventListener("load", () => {
+        updateZoomImage();
+        closeZoom();
+    });
+
+
+    imageFrame.addEventListener("pointermove", (event) => {
+        if (window.innerWidth <= 1100) {
+            closeZoom();
+            return;
+        }
+
+
+        if (!cursorIsInsideDisplayedImage(event)) {
+            closeZoom();
+            return;
+        }
+
+
+        if (!zoomPanel.classList.contains("active")) {
+            openZoom();
+        }
+
+
+        updateZoomPosition(event);
+    });
+
+
+    imageFrame.addEventListener("pointerleave", () => {
+        closeZoom();
+    });
+
+
+    document.addEventListener("pointermove", (event) => {
+        if (!zoomPanel.classList.contains("active")) {
+            return;
+        }
+
+
+        if (!cursorIsInsideDisplayedImage(event)) {
+            closeZoom();
+        }
+    });
+
+
+    window.addEventListener("scroll", () => {
+        closeZoom();
+    });
+
+
+    window.addEventListener("resize", () => {
+        closeZoom();
+    });
+
+
+    window.addEventListener("blur", () => {
+        closeZoom();
+    });
+
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            closeZoom();
+        }
+    });
+
+
+    if (mainImage.complete) {
+        updateZoomImage();
+        closeZoom();
+    }
+</script>
+    </body>
+</html>
