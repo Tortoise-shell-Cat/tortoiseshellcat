@@ -2414,3 +2414,27 @@ PAGE OÙ ACHETER
     justify-content: center !important;
     line-height: 1 !important;
 }
+
+/* Correctif : le motif du bas remplit tout l’espace restant sur la page d’accueil */
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    flex: 1;
+    min-height: 500px;
+    background-repeat: repeat;
+    background-position: top left;
+}
