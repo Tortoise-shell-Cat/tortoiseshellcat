@@ -2460,7 +2460,6 @@ footer {
 
 /* Rapproche les cadres de la forme concave
    sur "Où acheter" et "L’atelier" */
-
 .shop-page-main,
 .atelier-page-main {
     min-height: 0 !important;
