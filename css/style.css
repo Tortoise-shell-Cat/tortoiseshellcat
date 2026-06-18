@@ -2416,7 +2416,6 @@ PAGE OÙ ACHETER
 }
 
 /* Correctif : le motif du bas remplit tout l’espace restant sur la page d’accueil */
-
 html,
 body {
     min-height: 100%;
@@ -2437,4 +2436,24 @@ footer {
     min-height: 500px;
     background-repeat: repeat;
     background-position: top left;
+}
+
+/* Centre le bouton "Nous contacter" en bas du cadre */
+.shop-contact-action {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Espace entre le texte et le bouton */
+    margin-top: 18px;
+
+    /* Si le cadre utilise une grille, le bouton occupe toute la largeur */
+    grid-column: 1 / -1;
+}
+
+.shop-contact-button {
+    display: inline-flex;
+    width: fit-content;
+    margin: 0 auto;
 }
