@@ -2457,3 +2457,26 @@ footer {
     width: fit-content;
     margin: 0 auto;
 }
+
+/* Réduit l’espace entre le dernier cadre
+   et la forme orange concave
+   sur les pages "Où acheter" et "L’atelier" */
+.shop-page-content,
+.atelier-page-content {
+    padding-bottom: 20px;
+}
+
+.shop-contact-card,
+.atelier-content-card {
+    margin-bottom: 0;
+}
+
+.shop-page-main .page-wave,
+.atelier-page-main .page-wave {
+    margin-top: 0;
+}
+
+.shop-page-main,
+.atelier-page-main {
+    min-height: auto;
+}
