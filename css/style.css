@@ -504,7 +504,7 @@ body {
 .gallery-title {
     margin: 0 0 24px;
     color: #3a3a3a;
-    font-size: 28px;
+    font-size: 36px;
     font-weight: 300;
     letter-spacing: 0.5px;
     line-height: 1.2;
@@ -2214,7 +2214,7 @@ TITRE
 .atelier-page-heading h1 {
     margin: 0;
     color: #302424;
-    font-size: 54px;
+    font-size: 52px;
     font-weight: 300;
     line-height: 1.12;
 }
@@ -2458,25 +2458,30 @@ footer {
     margin: 0 auto;
 }
 
-/* Réduit l’espace entre le dernier cadre
-   et la forme orange concave
-   sur les pages "Où acheter" et "L’atelier" */
+/* Rapproche les cadres de la forme concave
+   sur "Où acheter" et "L’atelier" */
+.shop-page-main,
+.atelier-page-main {
+    min-height: 0 !important;
+    height: auto !important;
+    justify-content: flex-start !important;
+}
+
 .shop-page-content,
 .atelier-page-content {
-    padding-bottom: 20px;
+    flex: none !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding-bottom: 20px !important;
 }
 
 .shop-contact-card,
-.atelier-content-card {
-    margin-bottom: 0;
+.atelier-single-card {
+    margin-bottom: 0 !important;
 }
 
-.shop-page-main .page-wave,
-.atelier-page-main .page-wave {
-    margin-top: 0;
-}
-
-.shop-page-main,
-.atelier-page-main {
-    min-height: auto;
+.shop-page-main > .page-wave,
+.atelier-page-main > .page-wave {
+    margin-top: 0 !important;
+    flex: none !important;
 }
